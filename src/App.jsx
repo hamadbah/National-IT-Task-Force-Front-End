@@ -1,7 +1,24 @@
-// src/App.jsx
+import { useContext, useState, useEffect } from 'react';
+import NavBar from './components/NavBar/NavBar'
+import { Routes, Route, useNavigate } from 'react-router';
+import SignUpForm from './components/SignUpForm/SignUpForm'
+import SignInForm from './components/SignInForm/SignInForm'
+import { UserContext } from './contexts/UserContext';
+
 
 const App = () => {
-  return <h1>Hello world!</h1>;
-};
+  const { user } = useContext(UserContext)
 
-export default App;
+  return (
+    <>
+    <NavBar />
+      <Routes>
+        <Route path='/' element={<h1>Welcome to National task Force</h1>} />
+        <Route path='/sign-up' element={<SignUpForm />} />
+        <Route path='/sign-in' element={<SignInForm />} />
+      </Routes>
+    </>
+  )
+}
+
+export default App
