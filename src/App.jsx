@@ -13,7 +13,7 @@ const App = () => {
     <>
     <NavBar />
       <Routes>
-        <Route path='/' element={<h1>Welcome to National task Force</h1>} />
+        <Route path='/' element={<h1>Welcome to National Task Force</h1>} />
         <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='/sign-in' element={<SignInForm />} />
       </Routes>
