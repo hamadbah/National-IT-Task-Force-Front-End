@@ -15,6 +15,7 @@ const NavBar = () => {
       {user ? (
         <ul>
           <li><Link to='/'>HOME</Link></li>
+          <li><Link to='/teams'>Teams List</Link></li>
           <li><Link to='/' onClick={handleSignOut}>SIGN OUT</Link></li>
         </ul>
       ) : (
