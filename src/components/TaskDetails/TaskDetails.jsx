@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import * as taskService from '../../services/taskService';
 import { useParams, Link } from 'react-router';
 import { UserContext } from '../../contexts/UserContext';
-import CommentForm from '../CommentForm/CommentForm';
+
 
 const TaskDetails = (props) => {
    const [task, setTask] = useState(null);
@@ -60,33 +60,7 @@ const handleDeleteComment = async (commentId) => {
           )}
         </header>
         <p>{task.text}</p>
-      </section>
-      <section>
-        <h2>Comments</h2>
      
-     <CommentForm handleAddComment={handleAddComment} />
-        {!task.comments.length && <p>There are no comments.</p>}
-
-
-
-
-        {task.comments.map((comment) => (
-          <article key={comment._id}>
-            <header>
-              <p>
-                {`${comment.author.username} posted on
-                ${new Date(comment.createdAt).toLocaleDateString()}`}
-              </p>
-            </header>
-            <p>{comment.text}</p>
-
-            <CommentForm handleDeleteComment={handleDeleteComment} />
-             <button onClick={() => props.handleDeleteComment(comment._id)}>
-                Delete
-              </button>
-            
-          </article>
-        ))}
       </section>
     </main>
   </>
