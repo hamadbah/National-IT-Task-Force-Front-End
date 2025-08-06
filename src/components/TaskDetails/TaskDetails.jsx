@@ -32,7 +32,7 @@ const TaskDetails = (props) => {
       <p><strong>Description:</strong> {task.description}</p>
       <p><strong>Status:</strong> {task.status}</p>
       <p><strong>Assigned To:</strong> {task.assignedTo}</p>
-      <p><strong>Due Date:</strong> {new Date(task.dueDate).toLocaleDateString()}</p>
+      <p><strong>Duration:</strong> {task.duration}</p>
 
       <div>
         <Link to={`/tasks/${taskId}/edit`}> <button type="button">Edit</button> </Link>

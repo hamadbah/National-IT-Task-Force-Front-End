@@ -21,7 +21,7 @@ const TaskList = (props) => {
               <p>Description: {task.description}</p>
               <p>Status: {task.status}</p>
               <p>Assigned To: {task.assignedTo}</p>
-              <p>Due Date: {task.dueDate}</p>
+              <p>Duration: {task.duration}</p>
             </header>
           </article>
         ))

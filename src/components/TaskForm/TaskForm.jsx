@@ -14,7 +14,7 @@ const TaskForm = (props) => {
     dueDate: ''
   });
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchTask = async () => {
       const taskData = await taskService.show(taskId);
       setFormData(taskData);
@@ -30,16 +30,16 @@ const TaskForm = (props) => {
   };
 
   const handleSubmit = (evt) => {
-  evt.preventDefault();
-  if (taskId) {
-    props.handleUpdateTask(taskId, formData);
-  } else {
-    props.handleAddTask(formData);
-  }
-};
+    evt.preventDefault();
+    if (taskId) {
+      props.handleUpdateTask(taskId, formData);
+    } else {
+      props.handleAddTask(formData);
+    }
+  };
 
   return (
-     <main>
+    <main>
       <h1>{taskId ? 'Edit Task' : 'New Task'}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name-input'>Task: </label>
@@ -69,19 +69,23 @@ const TaskForm = (props) => {
           value={formData.status}
           onChange={handleChange}
         />
-        <label htmlFor='duration-input'>Duration: </label>
-        <input
-          required
-          type='text'
+        <label htmlFor='duration'>Duration:</label>
+        <select
+          id='duration'
           name='duration'
-          id='duration-input'
           value={formData.duration}
           onChange={handleChange}
-        />
+          required>
+          <option value=''>-- Select Duration --</option>
+          <option value='1-3 months'>1-3 months</option>
+          <option value='3-6 months'>3-6 months</option>
+          <option value='6-12 months'>6-12 months</option>
+          <option value='1 year or more'>1 year or more</option>
+        </select>
         <button type='submit'>SUBMIT</button>
       </form>
     </main>
   );
 };
 
-export default TeamForm;
+export default TaskForm;
