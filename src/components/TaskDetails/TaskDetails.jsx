@@ -1,73 +1,45 @@
-import { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate, Link } from 'react-router';
+import { useEffect, useState } from 'react';
 import * as taskService from '../../services/taskService';
-import { useParams, Link } from 'react-router';
-import { UserContext } from '../../contexts/UserContext';
-
 
 const TaskDetails = (props) => {
-   const [task, setTask] = useState(null);
   const { taskId } = useParams();
-  console.log('taskId', taskId);
-  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [task, setTask] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchTask = async () => {
-      const taskData = await taskService.show(taskId);
-      setHoot(hootData);
+      try {
+        const data = await taskService.show(taskId);
+        setTask(data);
+      } catch (err) {
+        console.error("Failed to fetch task", err);
+      }
     };
+
     fetchTask();
   }, [taskId]);
 
-  // Verify the task state is set correctly:
-  console.log('task state:', task);
-
-const handleAddComment = async (commentFormData) => {
-    const newComment = await taskService.createComment(taskId, commentFormData);
-    setTask({ ...task, comments: [...task.comments, newComment] });
-  };
-  // Function to handle deleting a comment
-const handleDeleteComment = async (commentId) => {
-    await taskService.deleteComment(taskId, commentId);
-    setTask({
-      ...task,
-      comments: task.comments.filter(comment => comment._id !== commentId),
-    });
+  const handleDelete = async () => {
+    await props.handleDeleteTask(taskId);
   };
 
+  if (!task) return <p>Loading task details...</p>;
 
-
-  if (!task) return (<main>Loading...</main>);
-
-    return (
-  <>
+  return (
     <main>
-      <section>
-         <header>
-          <p>{task.category.toUpperCase()}</p>
-          <h1>{task.title}</h1>
-          <p>
-            {`${task.author.username} posted on
-            ${new Date(task.createdAt).toLocaleDateString()}`}
-          </p>
-          {task.author._id === user._id && (
-            <>
-              <Link to={`/tasks/${taskId}/edit`}>Edit</Link>
+      <h2>{task.name}</h2>
+      <p><strong>Description:</strong> {task.description}</p>
+      <p><strong>Status:</strong> {task.status}</p>
+      <p><strong>Assigned To:</strong> {task.assignedTo}</p>
+      <p><strong>Due Date:</strong> {new Date(task.dueDate).toLocaleDateString()}</p>
 
-              <button onClick={() => props.handleDeleteTask(taskId)}>
-                Delete
-              </button>
-            </>
-          )}
-        </header>
-        <p>{task.text}</p>
-     
-      </section>
+      <div>
+        <Link to={`/tasks/${taskId}/edit`}> <button type="button">Edit</button> </Link>
+        <button type="button" onClick={handleDelete}> Delete </button>
+      </div>
     </main>
-  </>
-);
-
-
-}
- 
+  );
+};
 
 export default TaskDetails;

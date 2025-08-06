@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
@@ -6,22 +6,23 @@ import * as taskService from '../../services/taskService';
 
 const TaskForm = (props) => {
   const { taskId } = useParams();
-  console.log(taskId);
   const [formData, setFormData] = useState({
-    title: '',
-    text: '',
-    category: 'ministry',
+    name: '',
+    description: '',
+    status: '',
+    assignedTo: '',
+    dueDate: ''
   });
 
    useEffect(() => {
-    async function fetchTask() {
-           const taskData = await taskService.show(taskId);
-           setFormData(taskData);
-       }
+    const fetchTask = async () => {
+      const taskData = await taskService.show(taskId);
+      setFormData(taskData);
+    };
     if (taskId) fetchTask();
 
     // Add a cleanup function
-    return () => setFormData({ title: '', text: '', category: 'ministry' });
+    return () => setFormData({ name: '', description: '', status: '', assignedTo: '', dueDate: '' });
   }, [taskId]);
 
   const handleChange = (evt) => {
@@ -30,55 +31,57 @@ const TaskForm = (props) => {
 
   const handleSubmit = (evt) => {
   evt.preventDefault();
-  if (hootId) {
-    props.handleUpdateHoot(hootId, formData);
+  if (taskId) {
+    props.handleUpdateTask(taskId, formData);
   } else {
-    props.handleAddHoot(formData);
+    props.handleAddTask(formData);
   }
 };
 
   return (
      <main>
-      {/* Add a heading */}
-      {/* <h1>{taskId ? 'Edit Task' : 'New Task'}</h1>
+      <h1>{taskId ? 'Edit Task' : 'New Task'}</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='title-input'>Title</label>
+        <label htmlFor='name-input'>Task: </label>
         <input
           required
           type='text'
-          name='title'
-          id='title-input'
-          value={formData.title}
+          name='name'
+          id='name-input'
+          value={formData.name}
           onChange={handleChange}
         />
-        <label htmlFor='text-input'>Text</label>
-        <textarea
+        <label htmlFor='description-input'>Description: </label>
+        <input
           required
           type='text'
-          name='text'
-          id='text-input'
-          value={formData.text}
+          name='description'
+          id='description-input'
+          value={formData.description}
           onChange={handleChange}
         />
-        <label htmlFor='category-input'>Category</label>
-        <select
+        <label htmlFor='status-input'>Status: </label>
+        <input
           required
-          name='category'
-          id='category-input'
-          value={formData.category}
+          type='text'
+          name='status'
+          id='status-input'
+          value={formData.status}
           onChange={handleChange}
-        >
-          <option value='News'>News</option>
-          <option value='Games'>Games</option>
-          <option value='Music'>Music</option>
-          <option value='Movies'>Movies</option>
-          <option value='Sports'>Sports</option>
-          <option value='Television'>Television</option>
-        </select> */}
+        />
+        <label htmlFor='duration-input'>Duration: </label>
+        <input
+          required
+          type='text'
+          name='duration'
+          id='duration-input'
+          value={formData.duration}
+          onChange={handleChange}
+        />
         <button type='submit'>SUBMIT</button>
-      {/* </form> */}
+      </form>
     </main>
   );
 };
 
-export default TaskForm;
+export default TeamForm;
