@@ -7,6 +7,7 @@ import { UserContext } from './contexts/UserContext';
 import * as teamService from './services/teamService';
 import TeamList from './components/TeamsList/TeamList';
 import TeamForm from './components/TeamForm/TeamForm';
+import TeamDetails from './components/TeamDetails/TeamDetails';
 
 
 const App = () => {
@@ -50,7 +51,9 @@ const handleDeleteTeam = async (teamId) => {
         <Route path='/teams/new' element={<TeamForm handleAddTeam={handleAddTeam}/>}/>
         <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='/sign-in' element={<SignInForm />} />
-        <Route path='/teams' element={<TeamList teams={teams}/>} />
+        <Route path='/teams' element={<TeamList teams={teams} handleDeleteTeam={handleDeleteTeam}/>} />
+        <Route path='/teams/:teamId' element={<TeamDetails handleDeleteTeam={handleDeleteTeam}/>} />
+        <Route path="/teams/:teamId/edit" element={<TeamForm handleUpdateTeam={handleUpdateTeam} />} />
       </Routes>
     </>
   )
