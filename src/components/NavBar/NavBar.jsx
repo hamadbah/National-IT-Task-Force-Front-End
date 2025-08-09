@@ -20,6 +20,7 @@ const NavBar = () => {
             {user.role === 'admin' && (
               <>
                 <li><Link to='/teams'>Teams List</Link></li>
+              <li><Link to='/ministries'>Ministries List</Link></li>
                 <li><Link to='/tasks'>Tasks List</Link></li>
               </>
             )}
