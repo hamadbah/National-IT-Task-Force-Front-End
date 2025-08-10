@@ -68,10 +68,27 @@ const deleteMinistry = async (ministryId) => {
   }
 };
 
+const assignTasks = async (ministryId, taskIds) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${ministryId}/tasks`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ taskIds }),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   index,
   show,
   create,
   deleteMinistry,
-  update
+  update,
+  assignTasks
 };
