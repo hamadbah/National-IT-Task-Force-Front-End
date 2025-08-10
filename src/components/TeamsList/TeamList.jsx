@@ -18,10 +18,10 @@ const TeamList = (props) => {
               <h2>
                 <Link to={`/teams/${team._id}`}>{team.name}</Link>
               </h2>
-              <p>Speciality: {team.speciality}</p>
+              <p><strong>Speciality: </strong> {team.speciality}</p>
             </header>
-            <p><strong>Mobile:</strong> {team.mobileNo}</p>
-            <p><strong>Email:</strong> {team.email}</p>
+            <p><strong>Mobile: </strong> {team.mobileNo}</p>
+            <p><strong>Email: </strong> {team.email}</p>
           </article>
         ))
       )}

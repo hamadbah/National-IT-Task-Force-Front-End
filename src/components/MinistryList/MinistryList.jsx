@@ -1,12 +1,17 @@
 import { Link } from 'react-router';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext'
 
 const MinistryList = (props) => {
+  const { user } = useContext(UserContext);
   return (
     <main>
       <div>
-        <Link to="/ministries/new">
-          <button type="button">Add ministry</button>
-        </Link>
+        {user && user.role === 'admin' && (
+          <Link to="/ministries/new">
+            <button type="button">Add ministry</button>
+          </Link>
+        )}
       </div>
 
       {props.ministries.length === 0 ? (
@@ -18,11 +23,11 @@ const MinistryList = (props) => {
               <h2>
                 <Link to={`/ministries/${ministry._id}`}>{ministry.name}</Link>
               </h2>
-              <p>Phone: {ministry.Phone}</p>
+              <p><strong>Phone: </strong> {ministry.Phone}</p>
             </header>
-            <p><strong>website:</strong> {ministry.website}</p>
-            <p><strong>Email:</strong> {ministry.email}</p>
-            <p><strong>OpeningHours:</strong> {ministry.OpeningHours}</p>
+            <p><strong>website: </strong> {ministry.website}</p>
+            <p><strong>Email: </strong> {ministry.email}</p>
+            <p><strong>OpeningHours: </strong> {ministry.OpeningHours}</p>
           </article>
         ))
       )}

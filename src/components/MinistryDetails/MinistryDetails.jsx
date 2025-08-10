@@ -1,9 +1,11 @@
 import { useParams, Link } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext'
 import * as ministryService from '../../services/ministryService';
 import * as taskService from '../../services/taskService';
 
 const MinistryDetails = (props) => {
+  const { user } = useContext(UserContext);
   const { ministryId } = useParams();
   const [ministry, setMinistry] = useState(null);
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -78,10 +80,14 @@ const MinistryDetails = (props) => {
       <p><strong>Opening Hours:</strong> {ministry.OpeningHours}</p>
 
       <div>
-        <Link to={`/ministries/${ministryId}/edit`}>
-          <button type="button">Edit Ministry</button>
-        </Link>
-        <button type="button" onClick={handleDelete}>Delete Ministry</button>
+        {user && user.role === 'admin' && (
+          <>
+            <Link to={`/ministries/${ministryId}/edit`}>
+              <button type="button">Edit Ministry</button>
+            </Link>
+            <button type="button" onClick={handleDelete}>Delete Ministry</button>
+          </>
+        )}
       </div>
 
       <hr />
@@ -157,7 +163,7 @@ const MinistryDetails = (props) => {
             </label>
           </div>
 
-          <button type="submit">Create and Assign Task</button>
+          <button type="submit">Create Task</button>
           <button type="button" onClick={() => setShowAddTaskForm(false)}>Cancel</button>
         </form>
       )}

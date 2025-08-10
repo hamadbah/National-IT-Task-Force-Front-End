@@ -3,12 +3,6 @@ import { Link } from 'react-router';
 const TaskList = (props) => {
   return (
     <main>
-      <div>
-        <Link to="/tasks/new">
-          <button type="button">Add Task</button>
-        </Link>
-      </div>
-
       {props.tasks.length === 0 ? (
         <p>No tasks found.</p>
       ) : (
@@ -18,10 +12,13 @@ const TaskList = (props) => {
               <h2>
                 <Link to={`/tasks/${task._id}`}>{task.name}</Link>
               </h2>
-              <p>Description: {task.description}</p>
-              <p>Status: {task.status}</p>
-              <p>Assigned To: {task.assignedTo}</p>
-              <p>Duration: {task.duration}</p>
+              <p><strong>Description: </strong> {task.description}</p>
+              <p><strong>Status: </strong> {task.status}</p>
+              <p><strong>Assigned To: </strong> {task.ministry && task.ministry.length > 0
+                ? task.ministry.map(m => m.name).join(', ')
+                : 'No ministries assigned'}
+              </p>
+              <p><strong>Duration: </strong> {task.duration}</p>
             </header>
           </article>
         ))

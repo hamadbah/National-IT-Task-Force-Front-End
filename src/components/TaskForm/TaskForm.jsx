@@ -1,11 +1,11 @@
 
-
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import * as taskService from '../../services/taskService';
 
 const TaskForm = (props) => {
   const { taskId } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -25,6 +25,10 @@ const TaskForm = (props) => {
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  };
+
+  const handleCancel = () => {
+    navigate(-1);
   };
 
   const handleSubmit = (evt) => {
@@ -83,7 +87,8 @@ const TaskForm = (props) => {
           <option value='In Progress'>In Progress</option>
           <option value='Completed'>Completed</option>
         </select>
-        <button type='submit'>SUBMIT</button>
+        <button type='submit'>Submit</button>
+        <button type='button' onClick={handleCancel}>Cancel</button>
       </form>
     </main>
   );

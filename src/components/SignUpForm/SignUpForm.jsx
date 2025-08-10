@@ -15,7 +15,7 @@ const SignUpForm = () => {
     role: ''
   });
 
-  const {setUser} = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const { username, role, password, passwordConf } = formData;
 
@@ -76,16 +76,16 @@ const SignUpForm = () => {
           />
         </div>
         <div>
-            <label htmlFor='role'>Role:</label>
-            <select
-                id='role'
-                name='role'
-                value={role}
-                onChange={handleChange}
-                required>
-                <option value=''>-- Select Role --</option>
-                <option value='Task Leader'>Task Leader</option>
-            </select>
+          <label htmlFor='role'>Role:</label>
+          <select
+            id='role'
+            name='role'
+            value={role}
+            onChange={handleChange}
+            required>
+            <option value=''>-- Select Role --</option>
+            <option value='Task Leader'>Task Leader</option>
+          </select>
         </div>
         <div>
           <button disabled={isFormInvalid()}>Sign Up</button>
