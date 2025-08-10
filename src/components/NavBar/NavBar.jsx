@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <nav>
       <ul>
-        <li><Link to='/'>HOME</Link></li>
+        <li><Link to='/'>Home</Link></li>
 
         {user ? (
           <>
@@ -30,12 +30,12 @@ const NavBar = () => {
               </>
             )}
 
-            <li><Link to='/' onClick={handleSignOut}>SIGN OUT</Link></li>
+            <li><Link to='/' onClick={handleSignOut}>Logout</Link></li>
           </>
         ) : (
           <>
-            <li><Link to='/sign-in'>SIGN IN</Link></li>
-            <li><Link to='/sign-up'>SIGN UP</Link></li>
+            <li><Link to='/sign-in'>Login</Link></li>
+            <li><Link to='/sign-up'>Sign Up</Link></li>
           </>
         )}
       </ul>
