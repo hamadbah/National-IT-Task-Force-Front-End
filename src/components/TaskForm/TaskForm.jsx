@@ -20,8 +20,6 @@ const TaskForm = (props) => {
       setFormData(taskData);
     };
     if (taskId) fetchTask();
-
-    // Add a cleanup function
     return () => setFormData({ name: '', description: '', status: '', assignedTo: '', dueDate: '' });
   }, [taskId]);
 
@@ -60,15 +58,6 @@ const TaskForm = (props) => {
           value={formData.description}
           onChange={handleChange}
         />
-        <label htmlFor='status-input'>Status: </label>
-        <input
-          required
-          type='text'
-          name='status'
-          id='status-input'
-          value={formData.status}
-          onChange={handleChange}
-        />
         <label htmlFor='duration'>Duration:</label>
         <select
           id='duration'
@@ -81,6 +70,18 @@ const TaskForm = (props) => {
           <option value='3-6 months'>3-6 months</option>
           <option value='6-12 months'>6-12 months</option>
           <option value='1 year or more'>1 year or more</option>
+        </select>
+        <label htmlFor='status'>Status:</label>
+        <select
+          id='status'
+          name='status'
+          value={formData.status}
+          onChange={handleChange}
+          required>
+          <option value=''>-- Select Status --</option>
+          <option value='Pending'>Pending</option>
+          <option value='In Progress'>In Progress</option>
+          <option value='Completed'>Completed</option>
         </select>
         <button type='submit'>SUBMIT</button>
       </form>
