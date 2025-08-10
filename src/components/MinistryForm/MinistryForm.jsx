@@ -1,11 +1,10 @@
-// src/components/HootForm/HootForm.jsx
-
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import * as ministryService from '../../services/ministryService';
 
 const MinistryForm = (props) => {
   const { ministryId } = useParams();
+  const navigate = useNavigate();
   const [ministryFormData, setministryFormData] = useState({
     name: '',
     Phone: '',
@@ -14,15 +13,14 @@ const MinistryForm = (props) => {
     OpeningHours: ''
   });
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchMinistry = async () => {
       const ministryData = await ministryService.show(ministryId);
       setministryFormData(ministryData);
     };
     if (ministryId) fetchMinistry();
 
-    // Add a cleanup function
-    return () => setministryFormData({ name: '', Phone: '', email: '', website: '',  OpeningHours: '' });
+    return () => setministryFormData({ name: '', Phone: '', email: '', website: '', OpeningHours: '' });
   }, [ministryId]);
 
   const handleChange = (evt) => {
@@ -30,16 +28,20 @@ const MinistryForm = (props) => {
   };
 
   const handleSubmit = (evt) => {
-  evt.preventDefault();
-  if (ministryId) {
-    props.handleUpdateMinistry(ministryId, ministryFormData);
-  } else {
-    props.handleAddMinistry(ministryFormData);
-  }
-};
+    evt.preventDefault();
+    if (ministryId) {
+      props.handleUpdateMinistry(ministryId, ministryFormData);
+    } else {
+      props.handleAddMinistry(ministryFormData);
+    }
+  };
+
+  const handleCancel = () => {
+    navigate(-1);
+  };
 
   return (
-     <main>
+    <main>
       <h1>{ministryId ? 'Edit Ministry' : 'New Ministry'}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name-input'>Name: </label>
@@ -60,7 +62,7 @@ const MinistryForm = (props) => {
           value={ministryFormData.Phone}
           onChange={handleChange}
         />
-        <label htmlFor='website-input'>website: </label>
+        <label htmlFor='website-input'>Website: </label>
         <input
           required
           type='text'
@@ -78,7 +80,7 @@ const MinistryForm = (props) => {
           value={ministryFormData.email}
           onChange={handleChange}
         />
-         <label htmlFor='OpeningHours-input'>OpeningHours: </label>
+        <label htmlFor='OpeningHours-input'>Opening Hours: </label>
         <input
           required
           type='text'
@@ -87,7 +89,10 @@ const MinistryForm = (props) => {
           value={ministryFormData.OpeningHours}
           onChange={handleChange}
         />
-        <button type='submit'>SUBMIT</button>
+        <div>
+          <button type='submit'>Submit</button>
+          <button type='button' onClick={handleCancel}>Cancel</button>
+        </div>
       </form>
     </main>
   );

@@ -1,11 +1,10 @@
-// src/components/HootForm/HootForm.jsx
-
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import * as teamService from '../../services/teamService';
 
 const TeamForm = (props) => {
   const { teamId } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     speciality: '',
@@ -13,14 +12,12 @@ const TeamForm = (props) => {
     email: ''
   });
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchTeam = async () => {
       const teamData = await teamService.show(teamId);
       setFormData(teamData);
     };
     if (teamId) fetchTeam();
-
-    // Add a cleanup function
     return () => setFormData({ name: '', speciality: '', mobileNo: '', email: '' });
   }, [teamId]);
 
@@ -28,17 +25,20 @@ const TeamForm = (props) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   };
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
   const handleSubmit = (evt) => {
-  evt.preventDefault();
-  if (teamId) {
-    props.handleUpdateTeam(teamId, formData);
-  } else {
-    props.handleAddTeam(formData);
-  }
-};
+    evt.preventDefault();
+    if (teamId) {
+      props.handleUpdateTeam(teamId, formData);
+    } else {
+      props.handleAddTeam(formData);
+    }
+  };
 
   return (
-     <main>
+    <main>
       <h1>{teamId ? 'Edit Member' : 'New Member'}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name-input'>Name: </label>
@@ -77,7 +77,8 @@ const TeamForm = (props) => {
           value={formData.email}
           onChange={handleChange}
         />
-        <button type='submit'>SUBMIT</button>
+        <button type='submit'>Submit</button>
+        <button type='button' onClick={handleCancel}>Cancel</button>
       </form>
     </main>
   );

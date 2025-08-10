@@ -1,10 +1,9 @@
-import { useParams, useNavigate, Link } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { useEffect, useState } from 'react';
 import * as teamService from '../../services/teamService';
 
 const TeamDetails = (props) => {
   const { teamId } = useParams();
-  const navigate = useNavigate();
   const [team, setTeam] = useState(null);
 
   useEffect(() => {
@@ -21,8 +20,8 @@ const TeamDetails = (props) => {
   }, [teamId]);
 
   const handleDelete = async () => {
-    await props.handleDeleteTeam(teamId); 
-};
+    await props.handleDeleteTeam(teamId);
+  };
 
   if (!team) return <p>Loading team details...</p>;
 
