@@ -1,9 +1,8 @@
-// SignUpForm.jsx
-
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { signUp } from '../../services/authService';
 import { UserContext } from '../../contexts/UserContext.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -16,7 +15,6 @@ const SignUpForm = () => {
   });
 
   const { setUser } = useContext(UserContext);
-
   const { username, role, password, passwordConf } = formData;
 
   const handleChange = (evt) => {
@@ -26,11 +24,13 @@ const SignUpForm = () => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(formData);
-    const newUser = await signUp(formData);
-    setUser(newUser);
-    console.log(newUser);
-    navigate('/');
+    try {
+      const newUser = await signUp(formData);
+      setUser(newUser);
+      navigate('/');
+    } catch (err) {
+      setMessage(err.message);
+    }
   };
 
   const isFormInvalid = () => {
@@ -38,60 +38,84 @@ const SignUpForm = () => {
   };
 
   return (
-    <main>
-      <h1>Sign Up</h1>
-      <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='username'>Username:</label>
-          <input
-            type='text'
-            id='name'
-            value={username}
-            name='username'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password:</label>
-          <input
-            type='password'
-            id='password'
-            value={password}
-            name='password'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='confirm'>Confirm Password:</label>
-          <input
-            type='password'
-            id='confirm'
-            value={passwordConf}
-            name='passwordConf'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='role'>Role:</label>
-          <select
-            id='role'
-            name='role'
-            value={role}
-            onChange={handleChange}
-            required>
-            <option value=''>-- Select Role --</option>
-            <option value='Task Leader'>Task Leader</option>
-          </select>
-        </div>
-        <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
-          <button onClick={() => navigate('/')}>Cancel</button>
-        </div>
-      </form>
+    <main className="d-flex justify-content-center align-items-center vh-100">
+      <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '600px' }}>
+        <h1 className="text-center mb-4">Sign Up</h1>
+        {message && <p className="text-danger text-center">{message}</p>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">Username:</label>
+            <input
+              type="text"
+              id="username"
+              className="form-control"
+              value={username}
+              name="username"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password:</label>
+            <input
+              type="password"
+              id="password"
+              className="form-control"
+              value={password}
+              name="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="confirm" className="form-label">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirm"
+              className="form-control"
+              value={passwordConf}
+              name="passwordConf"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="role" className="form-label">Role:</label>
+            <select
+              id="role"
+              name="role"
+              className="form-select"
+              value={role}
+              onChange={handleChange}
+              required
+            >
+              <option value="">-- Select Role --</option>
+              <option value="Task Leader">Task Leader</option>
+            </select>
+          </div>
+
+          <div className="d-flex justify-content-between">
+            <button 
+              type="submit" 
+              className="btn btn-primary" 
+              disabled={isFormInvalid()}
+            >
+              Sign Up
+            </button>
+            <button 
+              type="button" 
+              className="btn btn-secondary" 
+              onClick={() => navigate('/')}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
   );
 };
