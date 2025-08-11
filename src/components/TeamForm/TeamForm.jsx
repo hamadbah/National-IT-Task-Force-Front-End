@@ -18,7 +18,8 @@ const TeamForm = (props) => {
       setFormData(teamData);
     };
     if (teamId) fetchTeam();
-    return () => setFormData({ name: '', speciality: '', mobileNo: '', email: '' });
+    return () =>
+      setFormData({ name: '', speciality: '', mobileNo: '', email: '' });
   }, [teamId]);
 
   const handleChange = (evt) => {
@@ -28,6 +29,7 @@ const TeamForm = (props) => {
   const handleCancel = () => {
     navigate(-1);
   };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (teamId) {
@@ -38,47 +40,88 @@ const TeamForm = (props) => {
   };
 
   return (
-    <main>
-      <h1>{teamId ? 'Edit Member' : 'New Member'}</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='name-input'>Name: </label>
-        <input
-          required
-          type='text'
-          name='name'
-          id='name-input'
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <label htmlFor='speciality-input'>Speciality: </label>
-        <input
-          required
-          type='text'
-          name='speciality'
-          id='speciality-input'
-          value={formData.speciality}
-          onChange={handleChange}
-        />
-        <label htmlFor='mobileNo-input'>Mobile No: </label>
-        <input
-          required
-          type='text'
-          name='mobileNo'
-          id='mobileNo-input'
-          value={formData.mobileNo}
-          onChange={handleChange}
-        />
-        <label htmlFor='email-input'>Email Address: </label>
-        <input
-          required
-          type='text'
-          name='email'
-          id='email-input'
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <button type='submit'>Submit</button>
-        <button type='button' onClick={handleCancel}>Cancel</button>
+    <main className="container my-4">
+      <h1 className="mb-4">{teamId ? 'Edit Member' : 'New Member'}</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="p-4 border rounded shadow-sm bg-light"
+      >
+        <div className="mb-3">
+          <label htmlFor="name-input" className="form-label">
+            Name
+          </label>
+          <input
+            required
+            type="text"
+            name="name"
+            id="name-input"
+            className="form-control"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Enter member name"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="speciality-input" className="form-label">
+            Speciality
+          </label>
+          <input
+            required
+            type="text"
+            name="speciality"
+            id="speciality-input"
+            className="form-control"
+            value={formData.speciality}
+            onChange={handleChange}
+            placeholder="Enter speciality"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="mobileNo-input" className="form-label">
+            Mobile No
+          </label>
+          <input
+            required
+            type="text"
+            name="mobileNo"
+            id="mobileNo-input"
+            className="form-control"
+            value={formData.mobileNo}
+            onChange={handleChange}
+            placeholder="Enter mobile number"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="email-input" className="form-label">
+            Email Address
+          </label>
+          <input
+            required
+            type="email"
+            name="email"
+            id="email-input"
+            className="form-control"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter email address"
+          />
+        </div>
+
+        <div className="d-flex gap-2">
+          <button type="submit" className="btn btn-success">
+            {teamId ? 'Update' : 'Save'}
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </main>
   );
