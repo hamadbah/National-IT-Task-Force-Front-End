@@ -26,15 +26,21 @@ const TeamDetails = (props) => {
   if (!team) return <p>Loading team details...</p>;
 
   return (
-    <main>
-      <h2>{team.name}</h2>
+    <main className="container mt-4">
+      <h2 className="mb-3">{team.name}</h2>
       <p><strong>Speciality:</strong> {team.speciality}</p>
       <p><strong>Mobile:</strong> {team.mobileNo}</p>
       <p><strong>Email:</strong> {team.email}</p>
 
-      <div>
-        <Link to={`/teams/${teamId}/edit`}> <button type="button">Edit</button> </Link>
-        <button type="button" onClick={handleDelete}> Delete </button>
+      <div className="mt-4 d-flex gap-2">
+        <Link to={`/teams/${teamId}/edit`}>
+          <button type="button" className="btn btn-success">
+            Edit
+          </button>
+        </Link>
+        <button type="button" className="btn btn-danger" onClick={handleDelete}>
+          Delete
+        </button>
       </div>
     </main>
   );

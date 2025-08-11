@@ -77,43 +77,62 @@ const TaskDetails = (props) => {
   if (!task) return <p>Loading task details...</p>;
 
   return (
-    <main>
-      <h2>{task.name}</h2>
-      <p><strong>Description:</strong> {task.description}</p>
-      <p><strong>Status:</strong> {task.status}</p>
-      <p><strong>Assigned To:</strong> {task.ministry && task.ministry.length > 0
-        ? task.ministry.map(m => m.name).join(', ')
-        : 'No ministries assigned'}
-      </p>
-      <p><strong>Duration:</strong> {task.duration}</p>
+    <main className="container my-4">
+      <h2 className="mb-3">{task.name}</h2>
 
-      <div>
-        <Link to={`/tasks/${taskId}/edit`}> <button type="button">Edit</button> </Link>
-        <button type="button" onClick={handleDelete}> Delete </button>
-      </div>
-      <hr />
-      <form onSubmit={handleAssignTeams}>
-
-        <h3>Assign Team Members to The Task</h3>
-        {teams.length === 0 && <p>No teams available.</p>}
-        {teams.map(team => (
-          <label key={team._id} style={{ display: 'block', marginBottom: '5px' }}>
-            <input
-              type="checkbox"
-              value={team._id}
-              checked={selectedTeamIds.includes(team._id)}
-              onChange={() => handleCheckboxChange(team._id)}
-            />
-            {team.name} ({team.speciality})
-          </label>
-        ))}
-
-        <button type="submit">Set Task-Force Team</button>
-      </form>
-      {statusMessage && (
-        <p style={{ marginTop: '10px', color: statusMessage.includes('Failed') ? 'red' : 'green' }}>
-          {statusMessage}
+      <div className="mb-3">
+        <p><strong>Description:</strong> {task.description}</p>
+        <p><strong>Status:</strong> {task.status}</p>
+        <p>
+          <strong>Assigned To:</strong> {task.ministry && task.ministry.length > 0
+            ? task.ministry.map(m => m.name).join(', ')
+            : 'No ministries assigned'}
         </p>
+        <p><strong>Duration:</strong> {task.duration}</p>
+      </div>
+
+      <div className="mb-4">
+        <Link to={`/tasks/${taskId}/edit`} className="btn btn-primary me-2">Edit</Link>
+        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+      </div>
+
+      <hr />
+
+      <form onSubmit={handleAssignTeams}>
+        <h3 className="mb-3">Assign Team Members to The Task</h3>
+
+        {teams.length === 0 && <p>No teams available.</p>}
+
+        <div className="mb-3">
+          {teams.map(team => (
+            <div className="form-check" key={team._id}>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id={`team-${team._id}`}
+                value={team._id}
+                checked={selectedTeamIds.includes(team._id)}
+                onChange={() => handleCheckboxChange(team._id)}
+              />
+              <label className="form-check-label" htmlFor={`team-${team._id}`}>
+                {team.name} ({team.speciality})
+              </label>
+            </div>
+          ))}
+        </div>
+
+        <button type="submit" className="btn btn-success">Set Task-Force Team</button>
+      </form>
+
+      {statusMessage && (
+        <div
+          className={`mt-3 alert ${
+            statusMessage.includes('Failed') ? 'alert-danger' : 'alert-success'
+          }`}
+          role="alert"
+        >
+          {statusMessage}
+        </div>
       )}
     </main>
   );

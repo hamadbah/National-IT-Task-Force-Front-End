@@ -17,6 +17,7 @@ import * as taskService from './services/taskService';
 import TaskDetails from './components/TaskDetails/TaskDetails';
 import TaskForm from './components/TaskForm/TaskForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/App.css';
 
 
 const App = () => {
@@ -108,7 +109,7 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route path='/' element={<h1>Welcome to National Task Force</h1>} />
+        <Route path='/' />
         <Route path='/teams/new' element={<TeamForm handleAddTeam={handleAddTeam} />} />
         <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='/sign-in' element={<SignInForm />} />
@@ -116,23 +117,13 @@ const App = () => {
         <Route path='/teams/:teamId' element={<TeamDetails handleDeleteTeam={handleDeleteTeam} />} />
         <Route path="/teams/:teamId/edit" element={<TeamForm handleUpdateTeam={handleUpdateTeam} />} />
         <Route path='/ministries' element={<MinistryList ministries={ministries} />} />
-        <Route path='/ministries/:ministryId' element={<MinistryDetails handleDeleteMinistry={handleDeleteMinistry} />}/>
-        <Route path='/ministries/new' element={<MinistryForm handleAddMinistry={handleAddMinistry} />}/>
-        <Route path='/ministries/:ministryId/edit' element={<MinistryForm handleUpdateMinistry={handleUpdateMinistry} />}/>
-          {/* Protected routes (available only to signed-in users) */}
-          <Route path='/tasks' element={<TaskList tasks={tasks} />} />
-          <Route
-            path='/tasks/:taskId'
-            element={<TaskDetails handleDeleteTask={handleDeleteTask} />}
-          />
-          <Route
-            path='/tasks/new'
-            element={<TaskForm handleAddTask={handleAddTask} />}
-          />
-          <Route
-            path='/tasks/:taskId/edit'
-            element={<TaskForm handleUpdateTask={handleUpdateTask} />}
-          />
+        <Route path='/ministries/:ministryId' element={<MinistryDetails handleDeleteMinistry={handleDeleteMinistry} />} />
+        <Route path='/ministries/new' element={<MinistryForm handleAddMinistry={handleAddMinistry} />} />
+        <Route path='/ministries/:ministryId/edit' element={<MinistryForm handleUpdateMinistry={handleUpdateMinistry} />} />
+        <Route path='/tasks' element={<TaskList tasks={tasks} />} />
+        <Route path='/tasks/:taskId' element={<TaskDetails handleDeleteTask={handleDeleteTask} />} />
+        <Route path='/tasks/new' element={<TaskForm handleAddTask={handleAddTask} />} />
+        <Route path='/tasks/:taskId/edit' element={<TaskForm handleUpdateTask={handleUpdateTask} />} />
       </Routes>
     </>
   );

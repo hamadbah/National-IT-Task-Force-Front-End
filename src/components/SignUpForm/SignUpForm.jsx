@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { signUp } from '../../services/authService';
 import { UserContext } from '../../contexts/UserContext.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -99,16 +98,16 @@ const SignUpForm = () => {
           </div>
 
           <div className="d-flex justify-content-between">
-            <button 
-              type="submit" 
-              className="btn btn-primary" 
+            <button
+              type="submit"
+              className="btn btn-primary"
               disabled={isFormInvalid()}
             >
               Sign Up
             </button>
-            <button 
-              type="button" 
-              className="btn btn-secondary" 
+            <button
+              type="button"
+              className="btn btn-secondary"
               onClick={() => navigate('/')}
             >
               Cancel
