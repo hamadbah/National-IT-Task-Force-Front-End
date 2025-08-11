@@ -8,7 +8,6 @@ import * as teamService from './services/teamService';
 import TeamList from './components/TeamsList/TeamList';
 import TeamForm from './components/TeamForm/TeamForm';
 import TeamDetails from './components/TeamDetails/TeamDetails';
-
 import MinistryList from './components/MinistryList/MinistryList';
 import MinistryForm from './components/MinistryForm/MinistryForm';
 import * as ministryService from './services/ministryService';
@@ -17,6 +16,8 @@ import TaskList from './components/TaskList/TaskList';
 import * as taskService from './services/taskService';
 import TaskDetails from './components/TaskDetails/TaskDetails';
 import TaskForm from './components/TaskForm/TaskForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   const [teams, setTeams] = useState([]);
