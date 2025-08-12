@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router';
 import { UserContext } from '../../contexts/UserContext';
-import logo from '../../assets/images/task-force.jpeg';
+
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -22,7 +22,6 @@ const NavBar = () => {
             height="60"
             className="d-inline-block align-top me-2"
           />
-          <h3 className="mb-0">National IT Task Force</h3>
         </Link>
         <button
           className="navbar-toggler"
