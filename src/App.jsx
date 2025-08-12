@@ -18,6 +18,7 @@ import TaskDetails from './components/TaskDetails/TaskDetails';
 import TaskForm from './components/TaskForm/TaskForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/App.css';
+import LandingPage from './components/LandingPage/LandingPage';
 
 
 const App = () => {
@@ -109,7 +110,7 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route path='/' />
+        <Route path='/' element={<LandingPage />}/>
         <Route path='/teams/new' element={<TeamForm handleAddTeam={handleAddTeam} />} />
         <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='/sign-in' element={<SignInForm />} />

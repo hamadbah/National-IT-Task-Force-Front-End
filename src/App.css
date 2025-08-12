@@ -10,6 +10,7 @@
 .custom-card {
   background-color: #f8f9fa;
   color: rgb(2, 27, 91);
+  border-radius: 40px;
 }
 
 .custom-card a {

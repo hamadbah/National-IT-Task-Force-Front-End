@@ -8,7 +8,7 @@ const MinistryList = (props) => {
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h3">Ministries List</h1>
+        <h1 className="h3 text-white">Ministries List</h1>
         {user && user.role === 'admin' && (
           <Link to="/ministries/new" className="btn btn-danger">
             Add Ministry
@@ -22,7 +22,7 @@ const MinistryList = (props) => {
         <div className="row g-4">
           {props.ministries.map((ministry) => (
             <div className="col-md-4" key={ministry._id}>
-              <div className="card card-hover h-100 shadow-sm border-0 text-center d-flex justify-content-center">
+              <div className="card card-hover h-100 shadow-sm border-0 text-center d-flex justify-content-center custom-card">
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                   <h5 className="card-title mb-3">
                     <Link
