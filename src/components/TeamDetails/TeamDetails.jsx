@@ -26,7 +26,7 @@ const TeamDetails = (props) => {
   if (!team) return <p>Loading team details...</p>;
 
   return (
-    <main className="container mt-4">
+    <main className="container-fluid bg-secondary min-vh-100 py-4">
       <h2 className="mb-3">{team.name}</h2>
       <p><strong>Speciality:</strong> {team.speciality}</p>
       <p><strong>Mobile:</strong> {team.mobileNo}</p>

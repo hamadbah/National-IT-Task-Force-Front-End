@@ -6,7 +6,7 @@ const MinistryList = (props) => {
   const { user } = useContext(UserContext);
 
   return (
-    <main className="container my-4">
+    <main className="container-fluid bg-secondary min-vh-100 py-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="h3">Ministries List</h1>
         {user && user.role === 'admin' && (
