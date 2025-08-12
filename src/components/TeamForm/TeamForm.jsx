@@ -44,7 +44,7 @@ const TeamForm = (props) => {
       <h1 className="mb-4">{teamId ? 'Edit Member' : 'New Member'}</h1>
       <form
         onSubmit={handleSubmit}
-        className="p-4 border rounded shadow-sm bg-light"
+        className="bg-light p-4 border rounded shadow-sm"
       >
         <div className="mb-3">
           <label htmlFor="name-input" className="form-label">
@@ -112,6 +112,7 @@ const TeamForm = (props) => {
 
         <div className="d-flex gap-2">
           <button type="submit" className="btn btn-success">
+            
             {teamId ? 'Update' : 'Save'}
           </button>
           <button

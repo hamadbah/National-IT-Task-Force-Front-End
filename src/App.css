@@ -19,3 +19,8 @@
 .custom-card a:hover {
   color: darkred;
 }
+
+.bg-custom-light {
+  background-color:rgb(62, 73, 85); /* Bootstrap's light gray */
+}
+

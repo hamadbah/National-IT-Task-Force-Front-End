@@ -40,11 +40,10 @@ const MinistryForm = (props) => {
     navigate(-1);
   };
 
-  return (
-    <main className="container mt-4">
+  return ( 
+    <main className="container-fluid bg-secondary ">
       <h1 className="mb-4">{ministryId ? 'Edit Ministry' : 'New Ministry'}</h1>
-      <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
-
+      <form onSubmit={handleSubmit} className="card p-4 shadow-sm bg-light">
         <div className="mb-3">
           <label htmlFor="name-input" className="form-label">Name</label>
           <input

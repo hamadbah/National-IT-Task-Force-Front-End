@@ -77,7 +77,7 @@ const TaskDetails = (props) => {
   if (!task) return <p>Loading task details...</p>;
 
   return (
-    <main className="container my-4">
+    <main className="container-fluid bg-secondary min-vh-100 py-4">
       <h2 className="mb-3">{task.name}</h2>
 
       <div className="mb-3">

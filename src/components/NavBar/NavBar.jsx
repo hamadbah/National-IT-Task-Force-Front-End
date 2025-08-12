@@ -12,11 +12,11 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-secondary bg-custom-light">
       <div className="container-fluid">
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img
-            src={logo}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Coat_of_Arms_of_The_Kingdom_of_Bahrain.svg/800px-Coat_of_Arms_of_The_Kingdom_of_Bahrain.svg.png"
             alt="Home"
             width="80"
             height="60"

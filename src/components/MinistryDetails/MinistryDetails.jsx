@@ -76,7 +76,7 @@ const MinistryDetails = (props) => {
   if (!ministry) return <p>Loading ministry details...</p>;
 
   return (
-    <main className="container mt-4">
+    <main className="container-fluid bg-secondary min-vh-100 py-4">
       <h2>{ministry.name}</h2>
       <p><strong>Phone:</strong> {ministry.Phone}</p>
       <p><strong>Email:</strong> {ministry.email}</p>
@@ -123,7 +123,7 @@ const MinistryDetails = (props) => {
 
       {showAddTaskForm && (
         <form onSubmit={handleAddTaskSubmit} className="card p-3 mb-4 shadow-sm">
-          <div className="mb-3">
+          <div className="mb-3 ">
             <label htmlFor="taskName" className="form-label">Name</label>
             <input
               id="taskName"
