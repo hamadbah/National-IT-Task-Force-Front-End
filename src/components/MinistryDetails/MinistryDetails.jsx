@@ -77,11 +77,11 @@ const MinistryDetails = (props) => {
 
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
-      <h2>{ministry.name}</h2>
-      <p><strong>Phone:</strong> {ministry.Phone}</p>
-      <p><strong>Email:</strong> {ministry.email}</p>
-      <p><strong>Website:</strong> {ministry.website}</p>
-      <p><strong>Opening Hours:</strong> {ministry.OpeningHours}</p>
+      <h2 className="text-white">{ministry.name}</h2>
+      <p className="text-white"><strong>Phone:</strong> {ministry.Phone}</p>
+      <p className="text-white"><strong>Email:</strong> {ministry.email}</p>
+      <p className="text-white"><strong>Website:</strong> {ministry.website}</p>
+      <p className="text-white"><strong>Opening Hours:</strong> {ministry.OpeningHours}</p>
 
       {user && user.role === 'admin' && (
         <div className="mb-3 d-flex gap-2">
@@ -98,7 +98,7 @@ const MinistryDetails = (props) => {
 
       <hr />
 
-      <h3>Assigned Tasks:</h3>
+      <h3 className="text-white">Assigned Tasks:</h3>
       {ministry.tasks && ministry.tasks.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mb-3">
           {ministry.tasks.map(task => (
