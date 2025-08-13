@@ -27,10 +27,10 @@ const TeamDetails = (props) => {
 
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
-      <h2 className="mb-3">{team.name}</h2>
-      <p><strong>Speciality:</strong> {team.speciality}</p>
-      <p><strong>Mobile:</strong> {team.mobileNo}</p>
-      <p><strong>Email:</strong> {team.email}</p>
+      <h2 className="mb-3 text-white">{team.name}</h2>
+      <p className="text-white"><strong>Speciality:</strong> {team.speciality}</p>
+      <p className="text-white"><strong>Mobile:</strong> {team.mobileNo}</p>
+      <p className="text-white"><strong>Email:</strong> {team.email}</p>
 
       <div className="mt-4 d-flex gap-2">
         <Link to={`/teams/${teamId}/edit`}>

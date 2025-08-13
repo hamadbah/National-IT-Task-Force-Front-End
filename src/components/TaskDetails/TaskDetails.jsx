@@ -78,17 +78,17 @@ const TaskDetails = (props) => {
 
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
-      <h2 className="mb-3">{task.name}</h2>
-
-      <div className="mb-3">
-        <p><strong>Description:</strong> {task.description}</p>
-        <p><strong>Status:</strong> {task.status}</p>
-        <p>
+      <h2 className="mb-3 text-white">{task.name}</h2>
+ 
+      <div className="mb-3 text-white">
+        <p className="text-white"><strong>Description:</strong> {task.description}</p>
+        <p className="text-white"><strong>Status:</strong> {task.status}</p>
+        <p className="text-white">
           <strong>Assigned To:</strong> {task.ministry && task.ministry.length > 0
             ? task.ministry.map(m => m.name).join(', ')
             : 'No ministries assigned'}
         </p>
-        <p><strong>Duration:</strong> {task.duration}</p>
+        <p className="text-white"><strong>Duration:</strong> {task.duration}</p>
       </div>
 
       <div className="mb-4">
@@ -99,7 +99,7 @@ const TaskDetails = (props) => {
       <hr />
 
       <form onSubmit={handleAssignTeams}>
-        <h3 className="mb-3">Assign Team Members to The Task</h3>
+        <h3 className="mb-3 text-white">Assign Team Members to The Task</h3>
 
         {teams.length === 0 && <p>No teams available.</p>}
 
@@ -114,7 +114,7 @@ const TaskDetails = (props) => {
                 checked={selectedTeamIds.includes(team._id)}
                 onChange={() => handleCheckboxChange(team._id)}
               />
-              <label className="form-check-label" htmlFor={`team-${team._id}`}>
+              <label className="form-check-label text-white" htmlFor={`team-${team._id}`}>
                 {team.name} ({team.speciality})
               </label>
             </div>
