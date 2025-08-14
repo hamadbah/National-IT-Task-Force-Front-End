@@ -78,6 +78,7 @@ const TaskDetails = (props) => {
 
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
+      <div className="container" style={{ maxWidth: '1600px' }}>
       <h2 className="mb-3 text-white">{task.name}</h2>
  
       <div className="mb-3 text-white">
@@ -134,6 +135,7 @@ const TaskDetails = (props) => {
           {statusMessage}
         </div>
       )}
+      </div>
     </main>
   );
 };

@@ -41,8 +41,9 @@ const MinistryForm = (props) => {
   };
 
   return ( 
-    <main className="container-fluid bg-secondary ">
-      <h1 className="mb-4">{ministryId ? 'Edit Ministry' : 'New Ministry'}</h1>
+    <main className="container-fluid bg-secondary min-vh-100 py-4">
+      <div className="container" style={{ maxWidth: '1600px' }}>
+      <h1 className="mb-4 text-white">{ministryId ? 'Edit Ministry' : 'New Ministry'}</h1>
       <form onSubmit={handleSubmit} className="card p-4 shadow-sm bg-light">
         <div className="mb-3">
           <label htmlFor="name-input" className="form-label">Name</label>
@@ -77,7 +78,7 @@ const MinistryForm = (props) => {
           <label htmlFor="website-input" className="form-label">Website</label>
           <input
             required
-            type="url"
+            type="text"
             className="form-control"
             name="website"
             id="website-input"
@@ -124,6 +125,7 @@ const MinistryForm = (props) => {
           </button>
         </div>
       </form>
+      </div>
     </main>
   );
 };

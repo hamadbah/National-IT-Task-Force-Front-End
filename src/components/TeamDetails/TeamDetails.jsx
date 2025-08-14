@@ -27,6 +27,7 @@ const TeamDetails = (props) => {
 
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
+      <div className="container" style={{ maxWidth: '1600px' }}>
       <h2 className="mb-3 text-white">{team.name}</h2>
       <p className="text-white"><strong>Speciality:</strong> {team.speciality}</p>
       <p className="text-white"><strong>Mobile:</strong> {team.mobileNo}</p>
@@ -41,6 +42,7 @@ const TeamDetails = (props) => {
         <button type="button" className="btn btn-danger" onClick={handleDelete}>
           Delete
         </button>
+      </div>
       </div>
     </main>
   );
