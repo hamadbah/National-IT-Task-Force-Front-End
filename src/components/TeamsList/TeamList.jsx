@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 const TeamList = (props) => {
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
+      <div className="container" style={{ maxWidth: '1200px' }}>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="h3 text-white">Team Members</h1>
         <Link to="/teams/new" className="btn btn-danger">
@@ -36,6 +37,7 @@ const TeamList = (props) => {
           ))}
         </div>
       )}
+      </div>
     </main>
   );
 };

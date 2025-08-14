@@ -40,8 +40,9 @@ const TeamForm = (props) => {
   };
 
   return (
-    <main className="container my-4">
-      <h1 className="mb-4">{teamId ? 'Edit Member' : 'New Member'}</h1>
+    <main className="container-fluid bg-secondary min-vh-100 py-4 ">
+      <div className="container" style={{ maxWidth: '1600px' }}>
+      <h1 className="mb-4 text-white">{teamId ? 'Edit Member' : 'New Member'}</h1>
       <form
         onSubmit={handleSubmit}
         className="bg-light p-4 border rounded shadow-sm"
@@ -124,6 +125,7 @@ const TeamForm = (props) => {
           </button>
         </div>
       </form>
+      </div>
     </main>
   );
 };

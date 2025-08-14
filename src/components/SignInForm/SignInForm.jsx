@@ -29,7 +29,7 @@ const SignInForm = () => {
   };
 
   return (
-    <main className="d-flex justify-content-center align-items-center vh-100">
+    <main className="d-flex justify-content-center align-items-center container-fluid bg-secondary min-vh-100 py-4">
       <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '600px' }}>
         <h1 className="text-center mb-4">Login</h1>
         {message && <p className="text-danger text-center">{message}</p>}

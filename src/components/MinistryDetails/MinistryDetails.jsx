@@ -77,6 +77,7 @@ const MinistryDetails = (props) => {
 
   return (
     <main className="container-fluid bg-secondary min-vh-100 py-4">
+      <div className="container" style={{ maxWidth: '1600px' }}>
       <h2 className="text-white">{ministry.name}</h2>
       <p className="text-white"><strong>Phone:</strong> {ministry.Phone}</p>
       <p className="text-white"><strong>Email:</strong> {ministry.email}</p>
@@ -106,7 +107,8 @@ const MinistryDetails = (props) => {
               <div className="card card-hover h-100 shadow-sm custom-card">
                 <div className="card-body d-flex align-items-center justify-content-center">
                   <Link to={`/tasks/${task._id}`} className="stretched-link text-decoration-none">
-                    <h5 className="card-title text-center">{task.name} - {task.status}</h5>
+                    <h5 className="card-title text-center">{task.name}</h5>
+                    <h5 className="text-center">{task.status}</h5>
                   </Link>
                 </div>
               </div>
@@ -117,7 +119,7 @@ const MinistryDetails = (props) => {
         <p>No tasks assigned yet.</p>
       )}
 
-      <button type="button" className="btn btn-success mb-3" onClick={handleAddTaskClick}>
+      <button type="button" className="btn btn-danger mb-3" onClick={handleAddTaskClick}>
         Add Task
       </button>
 
@@ -190,6 +192,7 @@ const MinistryDetails = (props) => {
           </div>
         </form>
       )}
+      </div>
     </main>
   );
 };
