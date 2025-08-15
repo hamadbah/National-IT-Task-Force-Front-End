@@ -116,7 +116,7 @@ const MinistryDetails = (props) => {
           ))}
         </div>
       ) : (
-        <p>No tasks assigned yet.</p>
+        <p className="text-white">No tasks assigned yet.</p>
       )}
 
       <button type="button" className="btn btn-danger mb-3" onClick={handleAddTaskClick}>
