@@ -67,42 +67,11 @@ const deleteTask = async (taskId) => {
     console.log(error);
   }
 };
-const createComment = async (taskId, commentFormData) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${taskId}/comments`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(commentFormData),
-    });
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const deleteComment = async (taskId, commentId) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${taskId}/comments/${commentId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export {
   index,
   show,
   create,
   deleteTask,
-  update,
-  createComment,
-  deleteComment
+  update
 };
