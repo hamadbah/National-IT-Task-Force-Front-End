@@ -17,6 +17,7 @@ import * as taskService from './services/taskService';
 import TaskDetails from './components/TaskDetails/TaskDetails';
 import TaskForm from './components/TaskForm/TaskForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../src/App.css';
 import LandingPage from './components/LandingPage/LandingPage';
 
